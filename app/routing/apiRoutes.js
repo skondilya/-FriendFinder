@@ -40,22 +40,24 @@ module.exports = function(app) {
       }
 
 
-     // Calculate user's total score
-    var userScores = newFriend.score;
-    var userTotalScore = sum(userScores);
-    console.log("user scores " + userScores);
-    console.log("total of the user score " + userTotalScore);
+     // Calculate new friend's total score
+    var newFriendScore = newFriend.score;
+    var newFriendTotalScore = sum(newFriendScore);
+    console.log("new friend scores " + newFriendScore);
+    console.log("total of the new friend score " + newFriendTotalScore);
 
     //check the best match 
     var differenceArray = [];
     for (i=0; i<friendData.length; i++) {
-      var totalDifference = Math.abs(userTotalScore - sum(friendData[i].scores));
-      differenceArray.push(totalDifference);
+      var Difference = Math.abs(newFriendTotalScore - sum(friendData[i].scores));
+      differenceArray.push(Difference);
     }
     console.log("the difference array "+differenceArray);
     var match = Math.min.apply(Math, differenceArray);
+    console.log(match);
     var matchIndex = differenceArray.indexOf(match);
-    
+    console.log(matchIndex);
+    console.log(friendData[matchIndex]);
     res.send(friendData[matchIndex]);
   });
 
